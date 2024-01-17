@@ -14,11 +14,12 @@ function Login() {
         event.preventDefault();
         try {
             const res = await getLogin({
-                sLoginName: email,
-                sPassword: password
+                username: email,
+                password: password
             });
-            console.log('Login Response:', res.status);
+            console.log('Login Response:', res.data.token);
             if (res.status == '200') {
+                localStorage.setItem("token",res.data.token)
                 Navigate('/home')
             }
 
